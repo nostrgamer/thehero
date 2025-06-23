@@ -1,0 +1,591 @@
+# MyOwnHero JavaScript - Modern Mobile-First Personal Empowerment Calculator
+
+## Project Overview
+**"Am I the hero of my own life?"** - A modern mobile-first React TypeScript application that leads users to Bitcoin through a hero's journey:
+
+1. **"Question Everything"** - Challenge false narratives keeping users trapped
+2. **"Your Time Has Value"** - Realize what you're trading your life for  
+3. **"A Hero Seeks Understanding"** - Show systematic time theft by design
+4. **"Same Rules for Everyone"** - Discover the power of hard money
+5. **"The Hero's Triumph"** - The Bitcoin revelation
+
+**Core Technology**: Modern React + TypeScript + Vite stack (following industry best practices)
+**Strategic Goal**: Lead people to Bitcoin through personal empowerment rather than direct Bitcoin messaging
+
+## Technology Stack - Modern Best Practices
+
+### Core Technologies (Industry Standard)
+- **Framework**: React 18+ with TypeScript
+- **Build Tool**: Vite (fast development, optimized production builds)
+- **Styling**: Tailwind CSS (utility-first, mobile-first responsive design)
+- **Charts**: Chart.js with react-chartjs-2 (industry standard for financial charts)
+- **State Management**: Zustand (lightweight, modern state management)
+- **Router**: React Router v6 (standard React routing)
+- **Storage**: localStorage with typed interfaces
+- **PWA**: Vite PWA plugin for offline capability
+- **Deployment**: Vercel/Netlify (optimized static hosting)
+
+### Mobile-First Principles
+✅ **Touch-first interactions** - Large tap targets (44px minimum)
+✅ **Thumb-zone optimization** - Key actions within easy reach
+✅ **Swipe navigation** - React gesture support
+✅ **Responsive typography** - Tailwind responsive classes
+✅ **Minimal data usage** - Efficient loading and caching
+✅ **Offline capability** - PWA with service worker caching
+✅ **Fast loading** - Vite optimization, code splitting
+✅ **Battery efficient** - React optimizations, efficient re-renders
+
+## File Structure (Modern React Architecture)
+
+```
+myownhero-js/
+├── public/
+│   ├── manifest.json                   # PWA manifest
+│   ├── favicon.ico                     # App icon
+│   └── icons/                          # PWA icons
+├── src/
+│   ├── components/                     # Reusable UI components
+│   │   ├── ui/                         # Base UI components
+│   │   │   ├── Button.tsx
+│   │   │   ├── Card.tsx
+│   │   │   ├── Input.tsx
+│   │   │   └── Chart.tsx
+│   │   ├── layout/                     # Layout components
+│   │   │   ├── Header.tsx
+│   │   │   ├── Navigation.tsx
+│   │   │   └── Container.tsx
+│   │   └── features/                   # Feature-specific components
+│   │       ├── Calculator.tsx
+│   │       ├── ProgressTracker.tsx
+│   │       └── ResultsDisplay.tsx
+│   ├── pages/                          # Page components (Hero's Journey)
+│   │   ├── Landing.tsx
+│   │   ├── QuestionEverything.tsx
+│   │   ├── TimeHasValue.tsx
+│   │   ├── SeekUnderstanding.tsx
+│   │   ├── SameRules.tsx
+│   │   └── HerosTriumph.tsx
+│   ├── hooks/                          # Custom React hooks
+│   │   ├── useLocalStorage.ts
+│   │   ├── useCalculations.ts
+│   │   └── useProgress.ts
+│   ├── utils/                          # Utility functions
+│   │   ├── calculations.ts
+│   │   ├── formatters.ts
+│   │   └── constants.ts
+│   ├── types/                          # TypeScript interfaces
+│   │   ├── index.ts
+│   │   └── calculations.ts
+│   ├── store/                          # Zustand store
+│   │   └── useStore.ts
+│   ├── styles/                         # Global styles
+│   │   └── globals.css
+│   ├── App.tsx                         # Main app component
+│   ├── main.tsx                        # Entry point
+│   └── vite-env.d.ts                   # Vite types
+├── package.json                        # Dependencies and scripts
+├── package-lock.json                   # Lock file
+├── vite.config.ts                      # Vite configuration
+├── tsconfig.json                       # TypeScript configuration
+├── tsconfig.node.json                  # Node TypeScript config
+├── tailwind.config.js                  # Tailwind configuration
+├── postcss.config.js                   # PostCSS configuration
+├── .gitignore                          # Git ignore rules
+├── README.md                           # Project documentation
+└── .cursorrules                        # This file
+```
+
+## TypeScript Architecture Patterns
+
+### Component Structure
+```typescript
+// src/components/ui/Button.tsx
+import { ReactNode } from 'react';
+
+interface ButtonProps {
+  children: ReactNode;
+  onClick?: () => void;
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  disabled?: boolean;
+  className?: string;
+}
+
+export const Button = ({ 
+  children, 
+  onClick, 
+  variant = 'primary', 
+  size = 'md',
+  disabled = false,
+  className = ''
+}: ButtonProps) => {
+  const baseClasses = 'font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2';
+  const variantClasses = {
+    primary: 'bg-bitcoin-orange text-white hover:bg-bitcoin-dark focus:ring-bitcoin-orange/50',
+    secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-gray-500/50',
+    outline: 'border-2 border-bitcoin-orange text-bitcoin-orange hover:bg-bitcoin-orange hover:text-white'
+  };
+  const sizeClasses = {
+    sm: 'px-3 py-2 text-sm min-h-[36px]',
+    md: 'px-4 py-3 text-base min-h-[44px]', // Touch-friendly
+    lg: 'px-6 py-4 text-lg min-h-[52px]'
+  };
+
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}
+    >
+      {children}
+    </button>
+  );
+};
+```
+
+### Type Definitions
+```typescript
+// src/types/calculations.ts
+export interface UserData {
+  hourlyWage?: number;
+  yearlySalary?: number;
+  savings?: number;
+  expenses?: number;
+  completedSteps: string[];
+  currentStep: string;
+  startedAt: Date;
+}
+
+export interface CalculationResult {
+  timeToAffordHouse: number;
+  timeToAffordCar: number;
+  wealthTransferPerYear: number;
+  bitcoinEquivalent: number;
+  inflationImpact: number;
+}
+
+export interface ChartData {
+  labels: string[];
+  datasets: {
+    label: string;
+    data: number[];
+    backgroundColor?: string;
+    borderColor?: string;
+  }[];
+}
+```
+
+### Custom Hooks
+```typescript
+// src/hooks/useCalculations.ts
+import { useMemo } from 'react';
+import { UserData, CalculationResult } from '../types/calculations';
+
+export const useCalculations = (userData: UserData): CalculationResult => {
+  return useMemo(() => {
+    const { hourlyWage = 0, yearlySalary = 0 } = userData;
+    const effectiveHourlyWage = hourlyWage || (yearlySalary / 2080); // 40 hours * 52 weeks
+    
+    const housePrice = 400000;
+    const carPrice = 35000;
+    const inflationRate = 0.08; // Current high inflation
+    
+    return {
+      timeToAffordHouse: housePrice / effectiveHourlyWage,
+      timeToAffordCar: carPrice / effectiveHourlyWage,
+      wealthTransferPerYear: yearlySalary * inflationRate,
+      bitcoinEquivalent: 21000000, // Total Bitcoin supply
+      inflationImpact: Math.pow(1 + inflationRate, 10) // 10-year impact
+    };
+  }, [userData]);
+};
+```
+
+### Store Management (Zustand)
+```typescript
+// src/store/useStore.ts
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+import { UserData } from '../types/calculations';
+
+interface AppState {
+  userData: UserData;
+  currentPage: string;
+  
+  // Actions
+  updateUserData: (data: Partial<UserData>) => void;
+  setCurrentPage: (page: string) => void;
+  completeStep: (step: string) => void;
+  resetProgress: () => void;
+}
+
+export const useStore = create<AppState>()(
+  persist(
+    (set, get) => ({
+      userData: {
+        completedSteps: [],
+        currentStep: 'landing',
+        startedAt: new Date()
+      },
+      currentPage: 'landing',
+      
+      updateUserData: (data) =>
+        set((state) => ({
+          userData: { ...state.userData, ...data }
+        })),
+        
+      setCurrentPage: (page) => set({ currentPage: page }),
+      
+      completeStep: (step) =>
+        set((state) => ({
+          userData: {
+            ...state.userData,
+            completedSteps: [...state.userData.completedSteps, step],
+            currentStep: step
+          }
+        })),
+        
+      resetProgress: () =>
+        set({
+          userData: {
+            completedSteps: [],
+            currentStep: 'landing',
+            startedAt: new Date()
+          },
+          currentPage: 'landing'
+        })
+    }),
+    {
+      name: 'hero-storage',
+      version: 1
+    }
+  )
+);
+```
+
+## Modern CSS Architecture (Tailwind)
+
+### Configuration
+```javascript
+// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        'bitcoin-orange': '#f7931a',
+        'bitcoin-dark': '#ff6b35',
+        'hero-blue': '#2563eb',
+        'success-green': '#10b981',
+        'warning-red': '#ef4444'
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif']
+      },
+      spacing: {
+        'safe-top': 'env(safe-area-inset-top)',
+        'safe-bottom': 'env(safe-area-inset-bottom)'
+      },
+      minHeight: {
+        'touch': '44px' // Minimum touch target
+      }
+    },
+  },
+  plugins: [],
+}
+```
+
+### Component Styling Patterns
+```typescript
+// Mobile-first responsive design patterns
+const containerClasses = "w-full max-w-md mx-auto px-4 sm:max-w-lg md:max-w-2xl lg:max-w-4xl";
+const cardClasses = "bg-white rounded-xl shadow-lg p-6 mb-6 border border-gray-100";
+const buttonClasses = "w-full sm:w-auto min-h-touch px-6 py-3 text-base font-medium rounded-lg transition-all";
+const inputClasses = "w-full min-h-touch px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-bitcoin-orange focus:border-transparent";
+```
+
+## Chart Integration (Chart.js)
+
+### Chart Component
+```typescript
+// src/components/ui/Chart.tsx
+import { Line, Bar, Doughnut } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
+
+interface ChartProps {
+  type: 'line' | 'bar' | 'doughnut';
+  data: any;
+  options?: any;
+  className?: string;
+}
+
+export const Chart = ({ type, data, options = {}, className = '' }: ChartProps) => {
+  const defaultOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: {
+          padding: 20,
+          usePointStyle: true
+        }
+      }
+    },
+    scales: type !== 'doughnut' ? {
+      y: {
+        beginAtZero: true,
+        grid: {
+          color: 'rgba(0, 0, 0, 0.1)'
+        }
+      },
+      x: {
+        grid: {
+          display: false
+        }
+      }
+    } : undefined
+  };
+
+  const chartOptions = { ...defaultOptions, ...options };
+
+  const ChartComponent = {
+    line: Line,
+    bar: Bar,
+    doughnut: Doughnut
+  }[type];
+
+  return (
+    <div className={`h-64 sm:h-80 ${className}`}>
+      <ChartComponent data={data} options={chartOptions} />
+    </div>
+  );
+};
+```
+
+## Page Structure (Hero's Journey)
+
+### Page Component Pattern
+```typescript
+// src/pages/TimeHasValue.tsx
+import { useState } from 'react';
+import { useStore } from '../store/useStore';
+import { useCalculations } from '../hooks/useCalculations';
+import { Button } from '../components/ui/Button';
+import { Input } from '../components/ui/Input';
+import { Card } from '../components/ui/Card';
+import { Chart } from '../components/ui/Chart';
+
+export const TimeHasValue = () => {
+  const { userData, updateUserData, setCurrentPage, completeStep } = useStore();
+  const [hourlyWage, setHourlyWage] = useState(userData.hourlyWage || '');
+  const calculations = useCalculations({ ...userData, hourlyWage: Number(hourlyWage) });
+
+  const handleContinue = () => {
+    updateUserData({ hourlyWage: Number(hourlyWage) });
+    completeStep('time-has-value');
+    setCurrentPage('seek-understanding');
+  };
+
+  const chartData = {
+    labels: ['House', 'Car', 'Vacation'],
+    datasets: [{
+      label: 'Hours to Afford',
+      data: [calculations.timeToAffordHouse, calculations.timeToAffordCar, 400],
+      backgroundColor: ['#f7931a', '#ff6b35', '#2563eb']
+    }]
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-safe-top pb-safe-bottom">
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-2xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">
+            Your Time Has Value
+          </h1>
+          
+          <Card className="mb-8">
+            <p className="text-lg text-gray-700 mb-6">
+              Every dollar you earn represents precious hours of your life. 
+              Let's calculate what your major purchases actually cost in time.
+            </p>
+            
+            <div className="space-y-4">
+              <Input
+                label="Your hourly wage ($)"
+                type="number"
+                value={hourlyWage}
+                onChange={(e) => setHourlyWage(e.target.value)}
+                placeholder="25.00"
+              />
+              
+              {hourlyWage && (
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <h3 className="font-semibold text-blue-900 mb-2">Time to Afford:</h3>
+                  <ul className="space-y-2 text-blue-800">
+                    <li>🏠 Average House: {Math.round(calculations.timeToAffordHouse).toLocaleString()} hours</li>
+                    <li>🚗 New Car: {Math.round(calculations.timeToAffordCar).toLocaleString()} hours</li>
+                  </ul>
+                </div>
+              )}
+            </div>
+          </Card>
+
+          {hourlyWage && (
+            <Card className="mb-8">
+              <Chart type="bar" data={chartData} />
+            </Card>
+          )}
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button 
+              variant="outline" 
+              onClick={() => setCurrentPage('question-everything')}
+              className="order-2 sm:order-1"
+            >
+              ← Back
+            </Button>
+            <Button 
+              onClick={handleContinue}
+              disabled={!hourlyWage}
+              className="order-1 sm:order-2 flex-1"
+            >
+              A Hero Seeks Understanding →
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+```
+
+## PWA Configuration
+
+### Vite PWA Setup
+```typescript
+// vite.config.ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { VitePWA } from 'vite-plugin-pwa';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
+      },
+      manifest: {
+        name: 'MyOwnHero - Personal Empowerment Calculator',
+        short_name: 'MyOwnHero',
+        description: 'Discover if you are the hero of your own life through personal finance calculations',
+        theme_color: '#f7931a',
+        background_color: '#ffffff',
+        display: 'standalone',
+        orientation: 'portrait',
+        start_url: '/',
+        icons: [
+          {
+            src: 'icons/icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'icons/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
+      }
+    })
+  ],
+  server: {
+    host: true,
+    port: 3000
+  }
+});
+```
+
+## Development Guidelines
+
+### TypeScript Best Practices
+- **Strict mode enabled** - Full type safety
+- **Interface over type** - Use interfaces for object shapes
+- **Explicit return types** - For better documentation
+- **Generic types** - Reusable type-safe functions
+- **Utility types** - Leverage TypeScript utility types
+
+### React Best Practices
+- **Functional components** - Use hooks pattern
+- **Custom hooks** - Extract reusable logic
+- **Proper key props** - For list rendering
+- **Error boundaries** - Graceful error handling
+- **Lazy loading** - Code splitting for performance
+- **Memoization** - useMemo/useCallback for optimization
+
+### Performance Guidelines
+- **Bundle analysis** - Use Vite bundle analyzer
+- **Code splitting** - Route-based splitting
+- **Image optimization** - WebP format, lazy loading
+- **Tree shaking** - Import only what you need
+- **Service worker** - Cache strategies for offline use
+
+### Testing Strategy
+- **Component testing** - React Testing Library
+- **Type checking** - TypeScript compiler
+- **Manual testing** - Device testing on actual mobile devices
+- **Performance testing** - Lighthouse audits
+- **Accessibility testing** - WCAG compliance
+
+## Security & Privacy
+- **No external tracking** - Privacy-first approach
+- **Local storage only** - No data collection
+- **HTTPS required** - Secure data transmission
+- **Content Security Policy** - XSS protection
+- **Dependency auditing** - Regular security updates
+
+## Deployment
+- **Static site generation** - Pre-built for performance
+- **CDN delivery** - Global edge locations
+- **Automatic HTTPS** - SSL certificate management
+- **Environment variables** - Secure configuration
+- **CI/CD pipeline** - Automated testing and deployment
+
+## Success Metrics
+- ✅ **TypeScript coverage**: 100% typed code
+- ✅ **Mobile responsiveness**: Works on all device sizes
+- ✅ **Performance**: Lighthouse score 90+
+- ✅ **Accessibility**: WCAG AA compliance
+- ✅ **Offline capability**: Full functionality without internet
+- ✅ **Bundle size**: Under 1MB initial load
+- ✅ **Load time**: Under 3 seconds on 3G
+
+**Philosophy**: Modern architecture with proven patterns, optimized for developer experience and user performance. The strategic "Trojan horse" approach is delivered through professional, maintainable code that scales. 

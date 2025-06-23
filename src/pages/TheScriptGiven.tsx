@@ -73,6 +73,15 @@ export const TheScriptGiven = () => {
                     <p className="text-green-200 text-sm">Normal rate - kids could launch</p>
                   </div>
                 </div>
+
+                {/* Retirement */}
+                <div className="text-center">
+                  <h3 className="text-xl font-bold mb-4">Retirement</h3>
+                  <div className="bg-green-800/30 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-green-300 mb-2">Age 62</div>
+                    <p className="text-green-200 text-sm">Pension + Social Security</p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -108,6 +117,15 @@ export const TheScriptGiven = () => {
                   <div className="bg-red-800/30 rounded-lg p-4">
                     <div className="text-3xl font-bold text-red-300 mb-2">52%</div>
                     <p className="text-red-200 text-sm">Great Depression levels</p>
+                  </div>
+                </div>
+
+                {/* Retirement */}
+                <div className="text-center">
+                  <h3 className="text-xl font-bold mb-4">Retirement</h3>
+                  <div className="bg-red-800/30 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-red-300 mb-2">Work til death</div>
+                    <p className="text-red-200 text-sm">Walmart greeter at 75</p>
                   </div>
                 </div>
               </div>

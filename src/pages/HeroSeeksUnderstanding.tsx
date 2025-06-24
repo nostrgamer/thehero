@@ -48,8 +48,8 @@ export const HeroSeeksUnderstanding = () => {
             <h2 className="text-3xl font-bold text-center mb-8">The Great Time Theft: Where Your Stolen Productivity Goes</h2>
             
             {/* Chart Area - Productivity vs Wages */}
-            <div className="bg-gray-900/50 rounded-xl p-8 mb-8 border border-gray-600">
-              <div className="relative h-80">
+            <div className="bg-gray-900/50 rounded-xl p-4 sm:p-8 mb-8 border border-gray-600">
+              <div className="relative h-64 sm:h-80">
                 
                 {/* Y-axis */}
                 <div className="absolute left-0 h-full flex flex-col justify-between text-sm text-gray-400">
@@ -74,29 +74,30 @@ export const HeroSeeksUnderstanding = () => {
                   {/* X-axis labels */}
                   <div className="absolute -bottom-8 w-full flex justify-between text-xs sm:text-sm text-gray-400">
                     <span className="hidden sm:inline">1948</span>
-                    <span className="sm:hidden">48</span>
+                    <span className="sm:hidden">'48</span>
                     <span className="hidden sm:inline">1961</span>
-                    <span className="sm:hidden">61</span>
+                    <span className="sm:hidden">'61</span>
                     <span className="hidden sm:inline">1973</span>
-                    <span className="sm:hidden">73</span>
+                    <span className="sm:hidden">'73</span>
                     <span className="hidden sm:inline">1985</span>
-                    <span className="sm:hidden">85</span>
+                    <span className="sm:hidden">'85</span>
                     <span className="hidden sm:inline">1997</span>
-                    <span className="sm:hidden">97</span>
+                    <span className="sm:hidden">'97</span>
                     <span className="hidden sm:inline">2009</span>
-                    <span className="sm:hidden">09</span>
+                    <span className="sm:hidden">'09</span>
                     <span className="hidden sm:inline">2024</span>
-                    <span className="sm:hidden">24</span>
+                    <span className="sm:hidden">'24</span>
                   </div>
                   
                   {/* The Lines */}
-                  <svg className="absolute inset-0 w-full h-full">
+                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 320" preserveAspectRatio="none">
                     {/* Hourly compensation (blue) - tracks with productivity until ~1973, then diverges */}
                     <polyline
                       points="0,320 50,300 100,280 120,260 140,250 160,245 180,240 200,235 220,230 240,225 260,220 280,215 300,210 320,205 340,200 360,195 380,190 400,185"
                       fill="none"
                       stroke="#3b82f6"
                       strokeWidth="4"
+                      vectorEffect="non-scaling-stroke"
                     />
                     {/* Net productivity (orange) - continues rising after 1973 */}
                     <polyline
@@ -104,6 +105,7 @@ export const HeroSeeksUnderstanding = () => {
                       fill="none"
                       stroke="#f97316"
                       strokeWidth="4"
+                      vectorEffect="non-scaling-stroke"
                     />
                   </svg>
                 </div>

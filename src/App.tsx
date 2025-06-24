@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useStore } from './store/useStore';
 import { Landing } from './pages/Landing';
 import { TheScriptGiven } from './pages/TheScriptGiven';

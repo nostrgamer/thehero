@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useStore } from '../store/useStore';
 import { Button } from '../components/ui/Button';
 import { Container } from '../components/layout/Container';
@@ -41,8 +41,8 @@ export const TimeHasValue = () => {
 
   // Calculate scenarios from current age and situation
   const calculateCollege = () => {
-    const totalCost = 120000; // $30k/year * 4 years
-    const studentContribution = 30000; // Min wage, 20 hrs/week, 4 years
+    // const totalCost = 120000; // $30k/year * 4 years
+    // const studentContribution = 30000; // Min wage, 20 hrs/week, 4 years
     const newDebt = 90000;
     const totalDebt = currentDebt + newDebt; // Existing debt + new college debt
     const maxPayment = annualPay * 0.10; // 10% of income cap
@@ -63,7 +63,7 @@ export const TimeHasValue = () => {
   };
 
   const calculateHouse = () => {
-    const housePrice = 450000;
+    // const housePrice = 450000;
     const downPayment = 90000; // 20%
     const currentLoanPayment = currentDebt > 0 ? annualPay * 0.10 : 0;
     const savingsCapacity = annualPay * 0.20; // 20% savings rate

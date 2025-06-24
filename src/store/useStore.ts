@@ -15,7 +15,7 @@ interface AppState {
 
 export const useStore = create<AppState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       userData: {
         completedSteps: [],
         currentStep: 'landing',

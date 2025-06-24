@@ -595,7 +595,7 @@ export const TimeHasValue = () => {
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      What's your take-home pay? (USD)
+                      What's your take-home pay after taxes? (USD)
                     </label>
                     <input
                       type="number"
@@ -604,6 +604,9 @@ export const TimeHasValue = () => {
                       placeholder="1600"
                       className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-white"
                     />
+                    <p className="text-xs text-gray-400 mt-1">
+                      Enter what actually hits your bank account (net income)
+                    </p>
                   </div>
 
                   <div>

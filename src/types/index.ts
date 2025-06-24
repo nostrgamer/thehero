@@ -32,4 +32,4 @@ export type HeroStep =
   | 'time-has-value'
   | 'seek-understanding'
   | 'same-rules'
-  | 'heros-triumph'; 
+  | 'hero-triumph'; 

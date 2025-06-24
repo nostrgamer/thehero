@@ -72,14 +72,21 @@ export const HeroSeeksUnderstanding = () => {
                   </div>
                   
                   {/* X-axis labels */}
-                  <div className="absolute -bottom-8 w-full flex justify-between text-sm text-gray-400">
-                    <span>1948</span>
-                    <span>1961</span>
-                    <span>1973</span>
-                    <span>1985</span>
-                    <span>1997</span>
-                    <span>2009</span>
-                    <span>2024</span>
+                  <div className="absolute -bottom-8 w-full flex justify-between text-xs sm:text-sm text-gray-400">
+                    <span className="hidden sm:inline">1948</span>
+                    <span className="sm:hidden">48</span>
+                    <span className="hidden sm:inline">1961</span>
+                    <span className="sm:hidden">61</span>
+                    <span className="hidden sm:inline">1973</span>
+                    <span className="sm:hidden">73</span>
+                    <span className="hidden sm:inline">1985</span>
+                    <span className="sm:hidden">85</span>
+                    <span className="hidden sm:inline">1997</span>
+                    <span className="sm:hidden">97</span>
+                    <span className="hidden sm:inline">2009</span>
+                    <span className="sm:hidden">09</span>
+                    <span className="hidden sm:inline">2024</span>
+                    <span className="sm:hidden">24</span>
                   </div>
                   
                   {/* The Lines */}

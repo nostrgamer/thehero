@@ -236,8 +236,7 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
   };
 
   const config = {
-    displayModeBar: true,
-    modeBarButtonsToRemove: ['pan2d', 'select2d', 'lasso2d', 'autoScale2d'] as any,
+    displayModeBar: false,
     displaylogo: false,
     responsive: true,
     scrollZoom: true
@@ -258,7 +257,7 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
       {/* Chart Tips */}
       <div className="mt-4 bg-gray-900/50 rounded-lg p-3 border border-orange-500/30">
         <div className="text-sm text-gray-300 text-center">
-          <span className="text-orange-400 font-medium">💡 Tip:</span> Scroll to zoom • Drag to pan • Double-click to reset • Click legend to show/hide lines
+          <span className="text-orange-400 font-medium">💡 Tip:</span> Click legend to show/hide lines
         </div>
       </div>
 

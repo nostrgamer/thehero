@@ -57,8 +57,7 @@ export const Landing = () => {
         </Container>
       </div>
 
-      {/* Bottom accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bitcoin-gradient"></div>
+
     </div>
   );
 }; 

@@ -5,6 +5,7 @@ import { TheScriptGiven } from './pages/TheScriptGiven';
 import { TimeHasValue } from './pages/TimeHasValue';
 import { HeroSeeksUnderstanding } from './pages/HeroSeeksUnderstanding';
 import { SameRulesForEveryone } from './pages/SameRulesForEveryone';
+import { HerosTriumph } from './pages/HerosTriumph';
 import './styles/globals.css';
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
         return <HeroSeeksUnderstanding />;
       case 'same-rules':
         return <SameRulesForEveryone />;
-      // Add other steps as we build them
+      case 'hero-triumph':
+        return <HerosTriumph />;
       default:
         return <Landing />;
     }

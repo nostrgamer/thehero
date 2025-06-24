@@ -147,7 +147,7 @@ export const SameRulesForEveryone = () => {
                   <h3 className="text-2xl font-bold text-yellow-400 mb-4">
                     Your Monthly Hard Money Savings
                   </h3>
-                  <div className="text-6xl font-bold text-green-400 mb-4">
+                  <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-green-400 mb-4">
                     ${savings.totalSavings.toLocaleString()}/month
                   </div>
                   <p className="text-xl text-yellow-300 mb-2">

@@ -17,9 +17,14 @@ export const Landing = () => {
         <Container className="py-12 lg:py-20">
           <div className="text-center">
             {/* Hero Question */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-12 leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
               Are You the Hero in Your Life?
             </h1>
+            
+            {/* Sub-header */}
+            <h2 className="text-2xl md:text-3xl text-gray-400 mb-12 font-medium">
+              Or have you given up, thinking success is only for a special few?
+            </h2>
             
             {/* Hero Definition */}
             <div className="max-w-4xl mx-auto mb-12 text-left">
@@ -42,7 +47,7 @@ export const Landing = () => {
 
             {/* Secondary Question */}
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">
-              If not, do you wish to be?
+              Will you live your life, rather than just watch it go by?
             </h2>
 
             {/* CTA Button */}

@@ -1,5 +1,6 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
+import { useStore } from '../../store/useStore';
 
 interface PowerLawChartProps {
   currentAge: string;
@@ -14,34 +15,25 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
   monthlySavings,
   bitcoinPrice
 }) => {
-  // Bitcoin Power Law model - uses the actual mathematical formula
+  const { userData } = useStore();
+  
+  const currentYear = new Date().getFullYear();
+  const ages = Array.from({ length: 50 }, (_, i) => parseInt(currentAge) + i);
+  const years = ages.map((_, i) => currentYear + i);
+
+  // Bitcoin Power Law model
   const bitcoinPowerLawPrice = (year: number): number => {
-    // Bitcoin genesis date: January 3, 2009
-    const genesisDate = new Date(2009, 0, 3); // Month is 0-indexed
-    const targetDate = new Date(year, 0, 1); // January 1st of target year
-    
-    // Calculate days from genesis
-    const daysFromGenesis = Math.floor((targetDate.getTime() - genesisDate.getTime()) / (1000 * 60 * 60 * 24));
-    
-    // Bitcoin Power Law formula: price = 1.0117e-17 * (days_from_genesis ^ 5.82)
-    // This is the actual mathematical model that has been tracking Bitcoin's long-term price
-    const powerLawPrice = 1.0117e-17 * Math.pow(daysFromGenesis, 5.82);
-    
-    return powerLawPrice;
+    const daysFromGenesis = (year - 2009) * 365.25;
+    return 1.0117e-17 * Math.pow(daysFromGenesis, 5.82);
   };
 
-  const usdToBtc = (usdAmount: number, btcPrice: number): number => {
+  // Helper functions
+  const usdToBtc = (usdAmount: number, btcPrice = bitcoinPrice): number => {
     return usdAmount / btcPrice;
   };
 
-  // Generate data for 50 years (extensive data for any zoom level)
-  const ages = Array.from({length: 50}, (_, i) => parseInt(currentAge) + i);
-  const currentYear = new Date().getFullYear();
-  
-  // Bitcoin Power Law prices
-  const bitcoinPrices = ages.map((_, i) => 
-    bitcoinPowerLawPrice(currentYear + i)
-  );
+  // Power Law price data
+  const powerLawData = years.map(year => bitcoinPowerLawPrice(year));
   
   // User's Bitcoin stack value
   const bitcoinStackValues = ages.map((_, i) => {
@@ -91,11 +83,21 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
     return fiatValue;
   });
 
+  // Calculate Financial Freedom goal based on user's income (20x annual income)
+  // Fall back to $1M if no income data available
+  const annualIncome = userData.yearlySalary || 50000; // Default to $50k if no data
+  const financialFreedomGoal = annualIncome * 20;
+
+  // Family Ready calculation: House down payment + family cushion
+  const houseDownPayment = 90000; // 20% down on $450K house
+  const familyCushion = 60000; // Additional cushion for starting a family
+  const familyReadyGoal = houseDownPayment + familyCushion; // $150K total
+
   // Goal lines data with different colors
   const goalLines = [
-    { value: 90000, label: 'House Down Payment', color: '#fbbf24' }, // Yellow
-    { value: 150000, label: 'Family Ready', color: '#a855f7' }, // Purple  
-    { value: 1000000, label: 'Financial Freedom', color: '#06b6d4' }, // Cyan
+    { value: houseDownPayment, label: 'House Down Payment', color: '#fbbf24' }, // Yellow
+    { value: familyReadyGoal, label: 'Family Ready (House + Cushion)', color: '#a855f7' }, // Purple  
+    { value: financialFreedomGoal, label: `Financial Freedom (20x income)`, color: '#06b6d4' }, // Cyan
   ];
 
   // Create goal line traces for legend (instead of shapes)
@@ -117,7 +119,7 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
   const data = [
     {
       x: ages,
-      y: bitcoinPrices,
+      y: powerLawData,
       type: 'scatter' as const,
       mode: 'lines' as const,
       name: 'Bitcoin Price (Power Law)',
@@ -156,7 +158,7 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
   ] as any;
 
   // Calculate proper y-axis range for better zoom
-  const allValues = [...bitcoinPrices, ...bitcoinStackValues, ...fiatSavings].filter(v => v > 0);
+  const allValues = [...powerLawData, ...bitcoinStackValues, ...fiatSavings].filter(v => v > 0);
   const minValue = Math.min(...allValues);
   const maxValue = Math.max(...allValues);
   const logMin = Math.log10(Math.max(1, minValue * 0.5));

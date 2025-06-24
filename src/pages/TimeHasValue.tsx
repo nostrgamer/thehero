@@ -4,7 +4,7 @@ import { Button } from '../components/ui/Button';
 import { Container } from '../components/layout/Container';
 
 export const TimeHasValue = () => {
-  const { setCurrentStep } = useStore();
+  const { setCurrentStep, updateUserData } = useStore();
   const [takeHomePay, setTakeHomePay] = useState<string>('');
   const [selectedPurchase, setSelectedPurchase] = useState<string>('');
   const [payFrequency, setPayFrequency] = useState<string>('bi-weekly');
@@ -15,6 +15,9 @@ export const TimeHasValue = () => {
   const [monthlyRetirementContribution, setMonthlyRetirementContribution] = useState<string>('');
 
   const handleNext = () => {
+    // Save the user's annual income to the store for consistency with PowerLaw chart
+    const annualPay = getAnnualPay();
+    updateUserData({ yearlySalary: annualPay });
     setCurrentStep('seek-understanding');
   };
 

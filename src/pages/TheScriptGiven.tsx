@@ -67,10 +67,10 @@ export const TheScriptGiven = () => {
 
                 {/* Family */}
                 <div className="text-center">
-                  <h3 className="text-xl font-bold mb-4">Family</h3>
+                  <h3 className="text-xl font-bold mb-4">Kids Launch Successfully</h3>
                   <div className="bg-green-800/30 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-green-300 mb-2">29%</div>
-                    <p className="text-green-200 text-sm">Normal rate - kids could launch</p>
+                    <div className="text-3xl font-bold text-green-300 mb-2">71%</div>
+                    <p className="text-green-200 text-sm">Young adults moved out by age 25</p>
                   </div>
                 </div>
 
@@ -113,10 +113,10 @@ export const TheScriptGiven = () => {
 
                 {/* Family */}
                 <div className="text-center">
-                  <h3 className="text-xl font-bold mb-4">Family</h3>
+                  <h3 className="text-xl font-bold mb-4">Kids Launch Successfully</h3>
                   <div className="bg-red-800/30 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-red-300 mb-2">52%</div>
-                    <p className="text-red-200 text-sm">Great Depression levels</p>
+                    <div className="text-3xl font-bold text-red-300 mb-2">48%</div>
+                    <p className="text-red-200 text-sm">Young adults moved out by age 25</p>
                   </div>
                 </div>
 
@@ -124,7 +124,7 @@ export const TheScriptGiven = () => {
                 <div className="text-center">
                   <h3 className="text-xl font-bold mb-4">Retirement</h3>
                   <div className="bg-red-800/30 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-red-300 mb-2">Work til death</div>
+                    <div className="text-3xl font-bold text-red-300 mb-2">Work until death</div>
                     <p className="text-red-200 text-sm">Walmart greeter at 75</p>
                   </div>
                 </div>

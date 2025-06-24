@@ -5,7 +5,7 @@ import { Container } from '../components/layout/Container';
 import { PowerLawChart } from '../components/ui/PowerLawChart';
 
 export const HerosTriumph = () => {
-  const { setCurrentStep } = useStore();
+  const { setCurrentStep, userData } = useStore();
   const [currentAge, setCurrentAge] = useState<string>('25');
   const [currentSavings, setCurrentSavings] = useState<string>('10000');
   const [monthlySavings, setMonthlySavings] = useState<string>('500');
@@ -63,11 +63,21 @@ export const HerosTriumph = () => {
     const currentBtc = usdToBtc(savings);
     const monthlySats = usdToSats(monthlyDCA);
     
+    // Calculate Financial Freedom goal based on user's income (20x annual income)
+    // Fall back to $1M if no income data available
+    const annualIncome = userData.yearlySalary || 50000; // Default to $50k if no data
+    const financialFreedomGoal = annualIncome * 20;
+    
+    // Family Ready calculation: House down payment + family cushion
+    const houseDownPayment = 90000; // 20% down on $450K house (consistent with TimeHasValue)
+    const familyCushion = 60000; // Additional cushion for starting a family
+    const familyReadyGoal = houseDownPayment + familyCushion; // $150K total
+    
     const goals = {
       debtFreedom: 40000,
-      houseDownPayment: 90000,
-      familyReady: 150000,
-      financialFreedom: 1000000,
+      houseDownPayment: houseDownPayment,
+      familyReady: familyReadyGoal,
+      financialFreedom: financialFreedomGoal,
       generationalWealth: 5000000
     };
 
@@ -116,7 +126,8 @@ export const HerosTriumph = () => {
       currentBtc,
       monthlySats,
       goals: results,
-      bitcoinPrice
+      bitcoinPrice,
+      financialFreedomGoal
     };
   };
 
@@ -283,7 +294,7 @@ export const HerosTriumph = () => {
                       <p className="text-lg text-red-400">
                         Financial Freedom: {lifeGoals.goals.financialFreedom.fiat.age === 'Never' ? 'Never' : `Age ${lifeGoals.goals.financialFreedom.fiat.age}`}
                       </p>
-                      <p className="text-sm text-red-200">Inflation eats your savings</p>
+                      <p className="text-sm text-red-200">Need ${(lifeGoals.financialFreedomGoal / 1000000).toFixed(1)}M (20x income)</p>
                     </div>
                     
                     <div className="bg-green-900/20 border border-green-600/30 rounded-lg p-4">
@@ -291,7 +302,7 @@ export const HerosTriumph = () => {
                       <p className="text-lg text-green-400">
                         Financial Freedom: Age {lifeGoals.goals.financialFreedom.bitcoin.age}
                       </p>
-                      <p className="text-sm text-green-200">Hard money preserves wealth</p>
+                      <p className="text-sm text-green-200">Same ${(lifeGoals.financialFreedomGoal / 1000000).toFixed(1)}M goal, better money</p>
                     </div>
                     
                     <div className="bg-orange-900/20 border border-orange-600/30 rounded-lg p-4">

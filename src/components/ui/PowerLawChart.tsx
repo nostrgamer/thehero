@@ -192,7 +192,8 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
       automargin: true,
       tickmode: 'auto' as const,
       dtick: 2,
-      side: 'bottom' as const
+      side: 'bottom' as const,
+      fixedrange: true
     },
     yaxis: {
       title: {
@@ -212,7 +213,8 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
       tickvals: [10000, 100000, 1000000, 10000000, 100000000, 1000000000],
       ticktext: ['$10k', '$100k', '$1M', '$10M', '$100M', '$1B'],
       range: [logMin, logMax],
-      automargin: true
+      automargin: true,
+      fixedrange: true
     },
     plot_bgcolor: 'rgba(0, 0, 0, 0)',
     paper_bgcolor: 'rgba(0, 0, 0, 0)',
@@ -241,7 +243,10 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
     displayModeBar: false,
     displaylogo: false,
     responsive: true,
-    scrollZoom: true
+    scrollZoom: false,
+    doubleClick: false,
+    showTips: false,
+    staticPlot: false
   } as any;
 
   return (

@@ -83,10 +83,10 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
     return fiatValue;
   });
 
-  // Calculate Financial Freedom goal based on user's income (20x annual income)
+      // Calculate Financial Freedom goal based on user's income (19x annual income)
   // Fall back to $1M if no income data available
   const annualIncome = userData.yearlySalary || 50000; // Default to $50k if no data
-  const financialFreedomGoal = annualIncome * 20;
+      const financialFreedomGoal = annualIncome * 19;
 
   // Family Ready calculation: House down payment + family cushion
   const houseDownPayment = 90000; // 20% down on $450K house
@@ -97,7 +97,7 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
   const goalLines = [
     { value: houseDownPayment, label: 'House Down Payment', color: '#fbbf24' }, // Yellow
     { value: familyReadyGoal, label: 'Family Ready (House + Cushion)', color: '#a855f7' }, // Purple  
-    { value: financialFreedomGoal, label: `Financial Freedom (20x income)`, color: '#06b6d4' }, // Cyan
+          { value: financialFreedomGoal, label: `Financial Freedom (19x income)`, color: '#06b6d4' }, // Cyan
   ];
 
   // Create goal line traces for legend (instead of shapes)

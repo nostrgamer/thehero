@@ -1,4 +1,4 @@
-import { PageReferences } from '../types';
+import { PageReferences, Reference } from '../types';
 
 export const pageReferences: PageReferences[] = [
   {
@@ -47,10 +47,72 @@ export const pageReferences: PageReferences[] = [
         type: 'calculation'
       }
     ]
+  },
+  {
+    pageId: 'time-has-value',
+    references: [
+      {
+        id: 'college-debt-calculation',
+        title: 'College Debt Burden: 4-Year Public University Total Cost',
+        description: 'Total college costs including room, board, and fees: $38,000/year x 4 years = $152,000. Student working 20 hrs/week at minimum wage contributes ~$30,000 over 4 years. Net new debt: $122,000. Math: ($7.25 x 20 hrs x 50 weeks) x 4 years = $29,000 student contribution. $152,000 - $30,000 = $122,000 new debt plus any existing debt. Uses same $38k annual cost from previous page calculation.',
+        url: '#college-debt-math',
+        type: 'calculation'
+      },
+      {
+        id: 'house-down-payment-calculation',
+        title: 'Housing Down Payment: 20% on Median Home Price',
+        description: 'Median home price $450,000 x 20% down payment = $90,000 needed upfront. Assuming 20% savings rate from income, minus existing debt payments (10% of income cap). Math: If annual income $50,000, savings capacity $10,000/year, minus $5,000 debt payments = $5,000 actual savings. $90,000 ÷ $5,000 = 18 years to save for down payment. Median home price from National Association of Realtors Q3 2024 data.',
+        url: 'https://www.nar.realtor/research-and-statistics/housing-statistics/existing-home-sales',
+        type: 'calculation'
+      },
+      {
+        id: 'child-cost-usda-official',
+        title: 'Cost of Raising a Child (USDA Official Data)',
+        description: 'USDA official estimate: $233,610 to raise a child born in 2015 to age 17. When adjusted for current inflation, this equals approximately $300,000 total or $16,667 per year. Includes housing, food, childcare, healthcare, clothing, and education costs (excludes college). The USDA stopped updating these reports after 2017 due to methodology concerns.',
+        url: 'https://www.fns.usda.gov/research/cnpp/expenditures-children-families',
+        type: 'data'
+      },
+      {
+        id: 'fertility-decline-acog-official',
+        title: 'Female Fertility Decline by Age (ACOG)',
+        description: 'American College of Obstetricians and Gynecologists: Female fertility decreases gradually starting at age 32, more rapidly after age 37. By age 40, only 1 in 10 women will get pregnant per menstrual cycle (vs 1 in 4 for women in their 20s). Women over 35 should receive expedited fertility evaluation after 6 months of trying.',
+        url: 'https://www.acog.org/womens-health/faqs/having-a-baby-after-age-35-how-aging-affects-fertility-and-pregnancy',
+        type: 'study'
+      },
+      {
+        id: 'fertility-decline-medical-consensus',
+        title: 'Age-Related Fertility Decline: Medical Committee Opinion',
+        description: 'ACOG Committee Opinion No. 589: "The fecundity of women decreases gradually but significantly beginning approximately at age 32 years and decreases more rapidly after age 37 years." This is the official medical consensus from the leading obstetrics and gynecology organization.',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/24553169/',
+        type: 'study'
+      },
+      {
+        id: 'social-security-insolvency',
+        title: 'Social Security Trust Fund Depletion: Official Trustee Report',
+        description: 'Social Security Trustees officially project trust fund depletion by 2034, with automatic benefit cuts to 77% of promised levels. For anyone under 50, Social Security will provide significantly reduced benefits or none at all. This requires personal retirement savings of 20x annual income instead of traditional 10-12x.',
+        url: 'https://www.ssa.gov/OACT/TR/2023/tr2023.pdf',
+        type: 'study'
+      },
+      {
+        id: 'trinity-study-retirement-calculation',
+        title: 'Trinity Study: 19x Income for Retirement (25x Expenses)',
+        description: 'The Trinity Study established the 4% safe withdrawal rate, requiring 25x annual expenses. Since expenses typically equal 75% of income, this translates to 19x annual income (25 × 0.75 = 18.75, rounded to 19). Traditional 10-12x advice assumed Social Security + pensions, which no longer exist for most workers.',
+        url: 'https://en.wikipedia.org/wiki/Trinity_study',
+        type: 'study'
+      },
+      {
+        id: 'debt-income-ratio-federal-guideline',
+        title: 'Federal Student Loan Payment Cap: 10% of Discretionary Income',
+        description: 'Federal income-driven repayment plans cap payments at 10% of discretionary income. For calculation purposes, we use 10% of gross income as maximum sustainable debt payment. This payment level severely impacts ability to save for house down payment and retirement contributions.',
+        url: 'https://studentaid.gov/manage-loans/repayment/plans/income-driven',
+        type: 'source'
+      }
+    ]
   }
 ];
 
 // Helper function to get references for a specific page
-export const getPageReferences = (pageId: string) => {
-  return pageReferences.find(page => page.pageId === pageId)?.references || [];
+export const getPageReferences = (pageId: string): Reference[] => {
+  const page = pageReferences.find(page => page.pageId === pageId);
+  return page ? page.references : [];
 }; 

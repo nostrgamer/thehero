@@ -63,10 +63,10 @@ export const HerosTriumph = () => {
     const currentBtc = usdToBtc(savings);
     const monthlySats = usdToSats(monthlyDCA);
     
-    // Calculate Financial Freedom goal based on user's income (20x annual income)
+    // Calculate Financial Freedom goal based on user's income (19x annual income)
     // Fall back to $1M if no income data available
     const annualIncome = userData.yearlySalary || 50000; // Default to $50k if no data
-    const financialFreedomGoal = annualIncome * 20;
+          const financialFreedomGoal = annualIncome * 19;
     
     // Family Ready calculation: House down payment + family cushion
     const houseDownPayment = 90000; // 20% down on $450K house (consistent with TimeHasValue)
@@ -294,7 +294,7 @@ export const HerosTriumph = () => {
                       <p className="text-lg text-red-400">
                         Financial Freedom: {lifeGoals.goals.financialFreedom.fiat.age === 'Never' ? 'Never' : `Age ${lifeGoals.goals.financialFreedom.fiat.age}`}
                       </p>
-                      <p className="text-sm text-red-200">Need ${(lifeGoals.financialFreedomGoal / 1000000).toFixed(1)}M (20x income)</p>
+                      <p className="text-sm text-red-200">Need ${(lifeGoals.financialFreedomGoal / 1000000).toFixed(1)}M (19x income)</p>
                     </div>
                     
                     <div className="bg-green-900/20 border border-green-600/30 rounded-lg p-4">

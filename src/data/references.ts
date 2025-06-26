@@ -162,6 +162,39 @@ export const pageReferences: PageReferences[] = [
         type: 'source'
       }
     ]
+  },
+  {
+    pageId: 'same-rules',
+    references: [
+      {
+        id: 'deflation-under-gold-standard',
+        title: 'Deflation and Prosperity: US Gold Standard Era (1879-1914)',
+        description: 'During the classical gold standard period, the US experienced mild deflation (~1% annually) while achieving the highest economic growth in its history. Prices fell as productivity improved, making goods more affordable for workers. This demonstrates that deflation can coexist with prosperity when money supply is fixed.',
+        url: 'https://www.nber.org/papers/w3410',
+        type: 'study'
+      },
+      {
+        id: 'productivity-gains-capture',
+        title: 'Who Captures Productivity Gains: Workers vs Asset Owners',
+        description: 'Federal Reserve research showing that productivity gains since 1971 have disproportionately benefited asset owners rather than workers. Under hard money systems, productivity improvements translate to lower prices (deflation), benefiting all consumers equally.',
+        url: 'https://www.federalreserve.gov/econres/feds/files/2018001pap.pdf',
+        type: 'study'
+      },
+      {
+        id: 'hard-money-calculation',
+        title: 'Hard Money Purchasing Power Calculation',
+        description: 'Math: 35% hard money appreciation - 10% fiat inflation = 25% net advantage annually. Over 10 years: (1.25)^10 = 9.3x purchasing power multiplier. Example: $2,000 monthly expenses become $214/month in purchasing power terms. This represents the mathematical advantage of holding hard money during fiat debasement.',
+        url: '#hard-money-math',
+        type: 'calculation'
+      },
+      {
+        id: 'fixed-supply-money-properties',
+        title: 'Properties of Fixed-Supply Money Systems',
+        description: 'Economic analysis of monetary systems with fixed supply constraints. Shows how fixed money supply eliminates Cantillon effects, creates equal rules for all participants, and allows productivity gains to benefit consumers through lower prices rather than being captured by those closest to money creation.',
+        url: 'https://mises.org/library/theory-money-and-credit',
+        type: 'study'
+      }
+    ]
   }
 ];
 

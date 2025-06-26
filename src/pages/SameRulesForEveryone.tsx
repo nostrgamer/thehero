@@ -2,9 +2,12 @@ import { useState } from 'react';
 import { useStore } from '../store/useStore';
 import { Button } from '../components/ui/Button';
 import { Container } from '../components/layout/Container';
+import { References } from '../components/ui/References';
+import { getPageReferences } from '../data/references';
 
 export const SameRulesForEveryone = () => {
   const { setCurrentStep } = useStore();
+  const references = getPageReferences('same-rules');
   const [monthlyExpenses, setMonthlyExpenses] = useState<string>('2000');
 
   const handleNext = () => {
@@ -252,6 +255,9 @@ export const SameRulesForEveryone = () => {
               </p>
             </div>
           </div>
+
+          {/* References */}
+          <References references={references} />
 
           {/* Navigation */}
           <div className="flex flex-col sm:flex-row gap-4 justify-between">

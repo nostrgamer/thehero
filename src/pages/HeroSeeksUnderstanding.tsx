@@ -2,9 +2,12 @@ import { useState } from 'react';
 import { useStore } from '../store/useStore';
 import { Button } from '../components/ui/Button';
 import { Container } from '../components/layout/Container';
+import { References } from '../components/ui/References';
+import { getPageReferences } from '../data/references';
 
 export const HeroSeeksUnderstanding = () => {
   const { setCurrentStep } = useStore();
+  const references = getPageReferences('seek-understanding');
   const [revealedSection, setRevealedSection] = useState<string>('');
 
   const handleNext = () => {
@@ -328,7 +331,7 @@ export const HeroSeeksUnderstanding = () => {
           </div>
 
           {/* Navigation */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-between">
+          <div className="flex flex-col sm:flex-row gap-4 justify-between mb-12">
             <Button 
               onClick={handleBack}
               variant="outline"
@@ -343,6 +346,9 @@ export const HeroSeeksUnderstanding = () => {
               Same Rules for Everyone →
             </Button>
           </div>
+
+          {/* References */}
+          <References references={references} />
         </div>
       </Container>
     </div>

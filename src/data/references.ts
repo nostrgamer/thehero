@@ -108,6 +108,60 @@ export const pageReferences: PageReferences[] = [
         type: 'source'
       }
     ]
+  },
+  {
+    pageId: 'seek-understanding',
+    references: [
+      {
+        id: 'productivity-pay-gap-epi',
+        title: 'Productivity-Pay Gap: EPI Analysis (1979-2020)',
+        description: 'Economic Policy Institute comprehensive study showing productivity increased 70% while wages increased only 12% from 1979-2020. This is the authoritative source for the productivity-wage divergence that began in the 1970s.',
+        url: 'https://www.epi.org/productivity-pay-gap/',
+        type: 'study'
+      },
+      {
+        id: 'nixon-shock-1971',
+        title: 'Nixon Shock: End of Gold Standard (August 15, 1971)',
+        description: 'Federal Reserve history of Nixon\'s decision to end the Bretton Woods system and remove the US dollar from the gold standard. This marked the beginning of the modern fiat monetary system.',
+        url: 'https://www.federalreservehistory.org/essays/gold-convertibility-ends',
+        type: 'source'
+      },
+      {
+        id: 'cantillon-effect-explanation',
+        title: 'The Cantillon Effect: How Money Printing Creates Inequality',
+        description: 'Named after 18th-century economist Richard Cantillon, this effect describes how new money benefits those who receive it first (banks, government, corporations) while harming those who receive it last (wage earners). Academic research paper demonstrating how central bank monetary policy creates wealth inequality through the non-neutral distribution of new money.',
+        url: 'https://mpra.ub.uni-muenchen.de/116787/1/money%20inequality.pdf',
+        type: 'study'
+      },
+      {
+        id: 'money-supply-growth-fed',
+        title: 'US Money Supply Growth (M2) - Federal Reserve Data',
+        description: 'Federal Reserve Economic Data (FRED) showing dramatic acceleration in money supply growth, especially after 2008 and 2020. M2 money supply increased from $1.6T in 1980 to over $21T by 2024.',
+        url: 'https://fred.stlouisfed.org/series/M2SL',
+        type: 'data'
+      },
+      {
+        id: 'asset-price-inflation-calculation',
+        title: 'Asset Price Inflation vs Wage Growth Calculation',
+        description: 'Comparison of asset price growth vs wage growth since 1971. S&P 500: 1971 = 100, 2024 = 5,000+ (50x increase). Median wage: 1971 = $7,000, 2024 = $50,000 (7x increase). Assets outpaced wages 7:1, explaining wealth inequality.',
+        url: '#asset-wage-divergence',
+        type: 'calculation'
+      },
+      {
+        id: 'inflation-understated-shadowstats',
+        title: 'Real Inflation vs Official CPI: Alternative Calculations',
+        description: 'Analysis showing how government inflation calculations have been methodologically changed since the 1980s to understate true inflation. Using 1980s methodology, real inflation is significantly higher than reported CPI.',
+        url: 'http://www.shadowstats.com/alternate_data/inflation-charts',
+        type: 'study'
+      },
+      {
+        id: 'bretton-woods-system-history',
+        title: 'Bretton Woods System: Gold Standard Era (1944-1971)',
+        description: 'Historical overview of the Bretton Woods international monetary system where currencies were pegged to gold. This system constrained money printing and maintained price stability until its collapse in 1971.',
+        url: 'https://www.investopedia.com/terms/b/brettonwoodsagreement.asp',
+        type: 'source'
+      }
+    ]
   }
 ];
 

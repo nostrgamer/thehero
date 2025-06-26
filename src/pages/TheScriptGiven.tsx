@@ -2,9 +2,12 @@
 import { useStore } from '../store/useStore';
 import { Button } from '../components/ui/Button';
 import { Container } from '../components/layout/Container';
+import { References } from '../components/ui/References';
+import { getPageReferences } from '../data/references';
 
 export const TheScriptGiven = () => {
   const { setCurrentStep } = useStore();
+  const references = getPageReferences('question-everything');
 
   const handleNext = () => {
     setCurrentStep('time-has-value');
@@ -160,6 +163,9 @@ export const TheScriptGiven = () => {
               Your Time Has Value →
             </Button>
           </div>
+
+          {/* References */}
+          <References references={references} />
         </div>
       </Container>
     </div>

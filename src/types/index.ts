@@ -26,6 +26,19 @@ export interface ChartData {
   }[];
 }
 
+export interface Reference {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+  type: 'study' | 'data' | 'article' | 'calculation' | 'source';
+}
+
+export interface PageReferences {
+  pageId: string;
+  references: Reference[];
+}
+
 export type HeroStep = 
   | 'landing'
   | 'question-everything'

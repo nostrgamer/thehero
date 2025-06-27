@@ -7,13 +7,15 @@ interface PowerLawChartProps {
   currentSavings: string;
   monthlySavings: string;
   bitcoinPrice: number;
+  financialFreedomGoal?: number;
 }
 
 export const PowerLawChart: React.FC<PowerLawChartProps> = ({
   currentAge,
   currentSavings,
   monthlySavings,
-  bitcoinPrice
+  bitcoinPrice,
+  financialFreedomGoal
 }) => {
   const { userData } = useStore();
   
@@ -83,10 +85,9 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
     return fiatValue;
   });
 
-  // Calculate Financial Freedom goal based on user's income (20x annual income)
-  // Fall back to $1M if no income data available
-  const annualIncome = userData.yearlySalary || 50000; // Default to $50k if no data
-  const financialFreedomGoal = annualIncome * 20;
+  // Use passed financial freedom goal or calculate from store data as fallback
+  const calculatedFinancialFreedomGoal = financialFreedomGoal || 
+    ((userData.yearlySalary || 50000) * 10); // Bitcoin standard: 10x vs 19x fiat
 
   // Family Ready calculation: House down payment + family cushion
   const houseDownPayment = 90000; // 20% down on $450K house
@@ -97,7 +98,7 @@ export const PowerLawChart: React.FC<PowerLawChartProps> = ({
   const goalLines = [
     { value: houseDownPayment, label: 'House Down Payment', color: '#fbbf24' }, // Yellow
     { value: familyReadyGoal, label: 'Family Ready (House + Cushion)', color: '#a855f7' }, // Purple  
-    { value: financialFreedomGoal, label: `Financial Freedom (20x income)`, color: '#06b6d4' }, // Cyan
+    { value: calculatedFinancialFreedomGoal, label: `Financial Freedom (10x income, Bitcoin)`, color: '#06b6d4' }, // Cyan
   ];
 
   // Create goal line traces for legend (instead of shapes)

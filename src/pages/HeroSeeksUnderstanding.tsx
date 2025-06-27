@@ -331,7 +331,7 @@ export const HeroSeeksUnderstanding = () => {
           </div>
 
           {/* Navigation */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-between mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-between">
             <Button 
               onClick={handleBack}
               variant="outline"

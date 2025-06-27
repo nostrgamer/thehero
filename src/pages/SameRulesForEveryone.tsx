@@ -256,9 +256,6 @@ export const SameRulesForEveryone = () => {
             </div>
           </div>
 
-          {/* References */}
-          <References references={references} />
-
           {/* Navigation */}
           <div className="flex flex-col sm:flex-row gap-4 justify-between">
             <Button 
@@ -275,6 +272,9 @@ export const SameRulesForEveryone = () => {
               The Hero's Triumph →
             </Button>
           </div>
+
+          {/* References */}
+          <References references={references} />
         </div>
       </Container>
     </div>

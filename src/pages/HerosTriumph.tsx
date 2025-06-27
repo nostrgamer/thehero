@@ -443,9 +443,6 @@ export const HerosTriumph = () => {
             </a>
           </div>
 
-          {/* References */}
-          <References references={references} />
-
           {/* Navigation */}
           <div className="flex justify-center">
             <Button 
@@ -455,6 +452,9 @@ export const HerosTriumph = () => {
               ← Back to Same Rules
             </Button>
           </div>
+
+          {/* References */}
+          <References references={references} />
         </div>
       </Container>
     </div>

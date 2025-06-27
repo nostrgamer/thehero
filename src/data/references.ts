@@ -94,9 +94,9 @@ export const pageReferences: PageReferences[] = [
         type: 'study'
       },
       {
-        id: 'trinity-study-retirement-calculation',
-        title: 'Trinity Study: 19x Income for Retirement (25x Expenses)',
-        description: 'The Trinity Study established the 4% safe withdrawal rate, requiring 25x annual expenses. Since expenses typically equal 75% of income, this translates to 19x annual income (25 × 0.75 = 18.75, rounded to 19). Traditional 10-12x advice assumed Social Security + pensions, which no longer exist for most workers.',
+        id: 'trinity-study-vs-bitcoin-standard',
+        title: 'Trinity Study (4% SWR) vs Bitcoin Standard (8-12% SWR)',
+        description: 'The Trinity Study established 4% safe withdrawal rate for fiat portfolios (25x expenses = 19x income). However, on a Bitcoin standard with deflationary money and long-term appreciation, safe withdrawal rates can be 8-12%, requiring only 10x income. Bitcoin\'s mathematical scarcity and power law growth enable higher sustainable withdrawal rates.',
         url: 'https://en.wikipedia.org/wiki/Trinity_study',
         type: 'study'
       },
@@ -194,6 +194,95 @@ export const pageReferences: PageReferences[] = [
         url: 'https://mises.org/library/theory-money-and-credit',
         type: 'study'
       }
+    ]
+  },
+  {
+    pageId: 'hero-triumph',
+    references: [
+      {
+        id: 'bitcoin-21-million-cap',
+        title: 'Bitcoin\'s 21 Million Supply Cap: Mathematical Certainty',
+        description: 'Bitcoin\'s code mathematically limits the total supply to 21 million coins. This is enforced by the protocol and cannot be changed without consensus from the entire network. Unlike fiat currencies, no central authority can print more Bitcoin.',
+        url: 'https://bitcoin.org/en/faq#why-do-bitcoins-have-value',
+        type: 'source'
+      },
+      {
+        id: 'bitcoin-power-law-santostasi',
+        title: 'Bitcoin Power Law Theory',
+        description: 'Physicist Giovanni Santostasi\'s research follows power laws with a 5.8 exponent. His theory explains Bitcoin as a scale-invariant system governed by feedback loops between price, hash rate, and adoption.',
+        url: 'https://giovannisantostasi.medium.com/the-bitcoin-power-law-theory-962dfaf99ee9',
+        type: 'study'
+      },
+      {
+        id: 'bitcoin-vs-fiat-monetary-debasement',
+        title: 'Bitcoin vs Fiat: Monetary Debasement Comparison',
+        description: 'Bitcoin Magazine analysis showing how fiat currencies lose purchasing power through continuous money printing while Bitcoin\'s fixed supply provides protection. Since 1971, fiat money has experienced systematic debasement while Bitcoin offers the first mathematically scarce digital asset.',
+        url: 'https://bitcoinmagazine.com/sponsored/bitcoin-has-no-top-because-fiat-has-no-bottom-understanding-monetary-debasement',
+        type: 'study'
+      },
+      {
+        id: 'bitcoin-security-self-custody',
+        title: 'Bitcoin Self-Custody: "Not Your Keys, Not Your Coins"',
+        description: 'Bitcoin allows true ownership through private key control. Unlike bank accounts that can be frozen or seized, Bitcoin held in self-custody cannot be confiscated. This represents a fundamental shift from permission-based to permissionless money.',
+        url: 'https://bitcoin.org/en/secure-your-wallet',
+        type: 'source'
+      },
+      {
+        id: 'bitcoin-dollar-cost-averaging',
+        title: 'Dollar-Cost Averaging Bitcoin: Historical Performance',
+        description: 'Historical analysis shows that dollar-cost averaging into Bitcoin over any 4-year period has never resulted in a loss. This strategy reduces volatility risk and has been the most successful approach for retail investors.',
+        url: 'https://dcabtc.com/',
+        type: 'data'
+      },
+      {
+        id: 'bitcoin-network-effects',
+        title: 'Bitcoin Network Effects: Metcalfe\'s Law Application',
+        description: 'Bitcoin\'s value grows according to Metcalfe\'s Law - network value increases with the square of users. As more people, institutions, and countries adopt Bitcoin, the network becomes exponentially more valuable and useful.',
+        url: 'https://medium.com/@100trillionUSD/modeling-bitcoins-value-with-scarcity-91fa0fc03e25',
+        type: 'study'
+      },
+      {
+        id: 'power-law-formula-calculation',
+        title: 'Bitcoin Power Law Formula: Price = 1.0117e-17 × (Days from Genesis)^5.82',
+        description: 'The mathematical formula used in our chart. Genesis = January 3, 2009. Example: For 2024 (5,479 days from genesis): Price = 1.0117e-17 × 5,479^5.82 = ~$67,000. The 5.82 exponent represents Bitcoin\'s growth trajectory discovered by physicist Giovanni Santostasi.',
+        url: '#power-law-formula',
+        type: 'calculation'
+      },
+      {
+        id: 'bitcoin-stack-value-calculation',
+        title: 'Your Bitcoin Stack Value Calculation (Green Dashed Line)',
+        description: 'Formula: Initial BTC (current savings ÷ current price) + cumulative DCA purchases. Each year: add (monthly savings × 12) ÷ average Bitcoin price that year. Final value = total BTC × power law price. This shows how dollar-cost averaging into Bitcoin builds wealth over time.',
+        url: '#bitcoin-stack-math',
+        type: 'calculation'
+      },
+      {
+        id: 'fiat-savings-decay-calculation',
+        title: 'Fiat Savings Decay Calculation (Red Line)',
+        description: 'Formula: Each year, fiat value = (previous value + annual savings) × (1 - 8% inflation). Shows how 8% annual inflation destroys purchasing power even with continued saving. Example: $10,000 becomes $4,665 in purchasing power after 10 years despite adding $6,000 annually.',
+        url: '#fiat-decay-math',
+        type: 'calculation'
+      },
+      {
+        id: 'financial-goals-calculation',
+        title: 'Financial Goal Lines Calculation (Dashed Horizontal Lines)',
+        description: 'House Down Payment: $90,000 (20% of $450k median home). Family Ready: $150,000 (house + $60k cushion). Financial Freedom: 10x annual income (Bitcoin standard: 8-12% SWR vs 4% fiat SWR). The calculator uses your input income or defaults to $50k if none provided. If you see $500k for Financial Freedom, that indicates an annual income of $50k ($500k ÷ 10 = $50k).',
+        url: '#financial-goals-math',
+        type: 'calculation'
+      },
+      {
+        id: 'log-scale-explanation',
+        title: 'Why Use Logarithmic Scale for Bitcoin Power Law Chart',
+        description: 'Bitcoin has grown over 4 orders of magnitude (from $0.01 to $100,000+). Linear scale would make early years invisible and recent years dominate. Log scale shows proportional changes equally - a 10x move looks the same whether from $1 to $10 or $10,000 to $100,000. This reveals the power law relationship.',
+        url: '#log-scale-explanation',
+        type: 'calculation'
+      },
+      {
+        id: 'dollar-cost-averaging-bitcoin',
+        title: 'Dollar-Cost Averaging Bitcoin Strategy',
+        description: 'DCA smooths out Bitcoin\'s volatility by buying fixed dollar amounts regularly regardless of price. When price is high, you buy fewer sats. When price is low, you buy more sats. Over time, this averages out to a good entry price and has never lost money over any 4-year period in Bitcoin\'s history.',
+        url: '#dca-strategy',
+        type: 'calculation'
+      },
     ]
   }
 ];

@@ -3,14 +3,37 @@ import { useStore } from '../store/useStore';
 import { Button } from '../components/ui/Button';
 import { Container } from '../components/layout/Container';
 import { PowerLawChart } from '../components/ui/PowerLawChart';
+import { References } from '../components/ui/References';
+import { getPageReferences } from '../data/references';
 
 export const HerosTriumph = () => {
   const { setCurrentStep, userData } = useStore();
+  const references = getPageReferences('hero-triumph');
   const [currentAge, setCurrentAge] = useState<string>('25');
   const [currentSavings, setCurrentSavings] = useState<string>('10000');
   const [monthlySavings, setMonthlySavings] = useState<string>('500');
   const [bitcoinPrice, setBitcoinPrice] = useState<number>(100000);
   const [priceLoading, setPriceLoading] = useState<boolean>(true);
+  const [takeHomePay, setTakeHomePay] = useState<string>('');
+  const [payFrequency, setPayFrequency] = useState<string>('bi-weekly');
+
+  // Calculate annual income from user input (copied from TimeHasValue)
+  const getAnnualNetIncome = () => {
+    const pay = parseFloat(takeHomePay) || 0;
+    switch (payFrequency) {
+      case 'weekly': return pay * 52;
+      case 'bi-weekly': return pay * 26;
+      case 'monthly': return pay * 12;
+      case 'annually': return pay;
+      default: return pay * 26;
+    }
+  };
+
+  // Convert net income to gross income (assuming 25% tax rate)
+  const getAnnualGrossIncome = () => {
+    const netIncome = getAnnualNetIncome();
+    return netIncome / 0.75; // Divide by 0.75 to account for 25% taxes
+  };
 
   // Fetch current Bitcoin price
   useEffect(() => {
@@ -63,10 +86,12 @@ export const HerosTriumph = () => {
     const currentBtc = usdToBtc(savings);
     const monthlySats = usdToSats(monthlyDCA);
     
-    // Calculate Financial Freedom goal based on user's income (19x annual income)
+    // Calculate Financial Freedom goal based on user's income (10x annual income, Bitcoin standard)
     // Fall back to $1M if no income data available
-    const annualIncome = userData.yearlySalary || 50000; // Default to $50k if no data
-          const financialFreedomGoal = annualIncome * 19;
+    // Use current input or fall back to store data or default
+    const userInputGrossIncome = getAnnualGrossIncome();
+    const annualIncome = userInputGrossIncome > 0 ? userInputGrossIncome : (userData.yearlySalary || 50000);
+    const financialFreedomGoal = annualIncome * 10; // Bitcoin standard: 8-12% SWR vs 4% fiat SWR
     
     // Family Ready calculation: House down payment + family cushion
     const houseDownPayment = 90000; // 20% down on $450K house (consistent with TimeHasValue)
@@ -236,6 +261,51 @@ export const HerosTriumph = () => {
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
+                        How often do you get paid?
+                      </label>
+                      <select 
+                        value={payFrequency} 
+                        onChange={(e) => setPayFrequency(e.target.value)}
+                        className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white"
+                      >
+                        <option value="bi-weekly">Bi-weekly (every 2 weeks)</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="annually">Annually</option>
+                      </select>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Take-home pay after taxes (USD)
+                      </label>
+                      <input
+                        type="number"
+                        value={takeHomePay}
+                        onChange={(e) => setTakeHomePay(e.target.value)}
+                        className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white"
+                        placeholder="1600"
+                      />
+                      <p className="text-xs text-gray-400 mt-1">
+                        Enter what actually hits your bank account
+                      </p>
+                      {takeHomePay && (
+                        <div className="bg-blue-900/20 border border-blue-600/30 rounded-lg p-3 mt-2">
+                                                     <p className="text-blue-300 text-sm font-semibold">
+                             Net Income: ${getAnnualNetIncome().toLocaleString()}
+                           </p>
+                           <p className="text-blue-200 text-xs">
+                             Gross Income: ${getAnnualGrossIncome().toLocaleString()} (est.)
+                           </p>
+                           <p className="text-blue-200 text-xs">
+                             Financial Freedom Goal: ${(getAnnualGrossIncome() * 10).toLocaleString()}
+                           </p>
+                        </div>
+                      )}
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
                         Monthly Savings (USD)
                       </label>
                       <input
@@ -294,7 +364,7 @@ export const HerosTriumph = () => {
                       <p className="text-lg text-red-400">
                         Financial Freedom: {lifeGoals.goals.financialFreedom.fiat.age === 'Never' ? 'Never' : `Age ${lifeGoals.goals.financialFreedom.fiat.age}`}
                       </p>
-                      <p className="text-sm text-red-200">Need ${(lifeGoals.financialFreedomGoal / 1000000).toFixed(1)}M (19x income)</p>
+                      <p className="text-sm text-red-200">Need ${(lifeGoals.financialFreedomGoal / 1000000).toFixed(1)}M (10x income, Bitcoin standard)</p>
                     </div>
                     
                     <div className="bg-green-900/20 border border-green-600/30 rounded-lg p-4">
@@ -326,6 +396,7 @@ export const HerosTriumph = () => {
                   currentSavings={currentSavings}
                   monthlySavings={monthlySavings}
                   bitcoinPrice={bitcoinPrice}
+                  financialFreedomGoal={lifeGoals.financialFreedomGoal}
                 />
               </div>
             </div>
@@ -371,6 +442,9 @@ export const HerosTriumph = () => {
               </Button>
             </a>
           </div>
+
+          {/* References */}
+          <References references={references} />
 
           {/* Navigation */}
           <div className="flex justify-center">

@@ -125,10 +125,10 @@ export const TimeHasValue = () => {
     const annualContribution = monthlyContribution * 12;
     const currentLoanPayment = currentDebt > 0 ? annualPay * 0.10 : 0;
     
-    // Retirement need: 19x annual income (based on Trinity Study: 25x expenses, assuming expenses = 75% of income)
-    // Trinity Study shows 4% withdrawal rate is safe, so 25x annual expenses needed
-    // Since expenses typically = 75% of income, 25x × 0.75 = 18.75x income (rounded to 19x)
-    const retirementNeed = annualPay * 19; // 19x annual income based on Trinity Study
+    // Retirement need: 10x annual income (Bitcoin standard vs 19x fiat standard)
+    // Fiat: Trinity Study 4% SWR = 25x expenses = 19x income (assuming 75% expense ratio)
+    // Bitcoin: 8-12% SWR possible due to deflationary nature and power law growth = 10x income
+    const retirementNeed = annualPay * 10; // 10x annual income on Bitcoin standard
     
     // Account for debt payments reducing retirement contributions
     const actualAnnualContribution = Math.max(0, annualContribution - (currentLoanPayment * 0.5)); // Debt cuts retirement in half
@@ -438,7 +438,7 @@ export const TimeHasValue = () => {
           {age <= 35 && (
             <div className="bg-red-900/50 border border-red-600/50 rounded-lg p-4 mb-6">
                              <p className="text-red-300 font-semibold">
-                 💀 Social Security will be bankrupt by 2035. The Trinity Study shows you need 19x your annual income (25x expenses) - not the 10-12x financial advisors lie about.
+                 💀 Social Security will be bankrupt by 2035. On a Bitcoin standard you need 10x your annual income (vs 19x on fiat) - not the 10-12x financial advisors lie about.
                </p>
             </div>
           )}
@@ -446,7 +446,7 @@ export const TimeHasValue = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div className="bg-red-800/20 rounded-lg p-4">
               <div className="text-2xl font-bold text-red-300 mb-2">${(retirement.retirementNeed / 1000000).toFixed(1)}M</div>
-              <p className="text-red-200 text-sm">What you need to retire (19x income)</p>
+              <p className="text-red-200 text-sm">What you need to retire (10x income, Bitcoin standard)</p>
               <p className="text-xs text-red-300">Based on Trinity Study (4% rule)</p>
             </div>
             <div className="bg-red-800/20 rounded-lg p-4">
@@ -518,12 +518,12 @@ export const TimeHasValue = () => {
           <div className="bg-gray-800/50 rounded-lg p-4 text-center">
             <p className="text-yellow-400 font-semibold">
               {retirement.workUntilDeath
-                ? "The Reality: The script promises you can 'save for retirement' but Social Security is bankrupt and wages can't support 19x income savings. You'll work until you die."
-                : retirement.shortfall > annualPay * 10
-                ? "The Reality: You need millions to retire comfortably. The Trinity Study proves it: 19x income (25x expenses). Financial advisors lied about 10-12x."
+                ? "The Reality: The script promises you can 'save for retirement' but Social Security is bankrupt and wages can't support even 10x income savings. You'll work until you die."
+                : retirement.shortfall > annualPay * 5
+                ? "The Reality: You need millions to retire comfortably. On a Bitcoin standard: 10x income. On fiat: 19x income. Financial advisors lied about 10-12x."
                 : currentDebt > 0 
                 ? "The Reality: Debt payments are stealing from your future self while Social Security crumbles."
-                : "The Reality: Your grandparents had pensions AND Social Security. You have neither. 19x income or work forever."
+                : "The Reality: Your grandparents had pensions AND Social Security. You have neither. 10x income (Bitcoin) or work forever."
               }
             </p>
           </div>
@@ -707,7 +707,7 @@ export const TimeHasValue = () => {
                     { 
                       id: 'retirement', 
                       label: 'Retire Comfortably', 
-                      desc: age > 0 && age > 40 ? 'Getting late to start...' : 'Need 19x annual income saved'
+                      desc: age > 0 && age > 40 ? 'Getting late to start...' : 'Need 10x annual income saved (Bitcoin standard)'
                     }
                   ].map((option) => (
                     <button

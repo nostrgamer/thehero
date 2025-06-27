@@ -5,6 +5,7 @@ import { Container } from '../components/layout/Container';
 import { PowerLawChart } from '../components/ui/PowerLawChart';
 import { References } from '../components/ui/References';
 import { StartOverLink } from '../components/ui/StartOverLink';
+import { GitHubIcon } from '../components/ui/GitHubIcon';
 import { getPageReferences } from '../data/references';
 
 export const HerosTriumph = () => {
@@ -161,6 +162,19 @@ export const HerosTriumph = () => {
 
   return (
     <div className="min-h-screen bg-black text-white pt-safe-top pb-safe-bottom">
+      {/* GitHub Icon - Fixed Position */}
+      <div className="fixed top-4 right-4 z-50">
+        <a
+          href="https://github.com/nostrgamer/thehero"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center w-12 h-12 bg-gray-800/80 hover:bg-gray-700/80 rounded-full transition-colors backdrop-blur-sm border border-gray-600/50"
+          title="View source code on GitHub"
+        >
+          <GitHubIcon className="w-6 h-6 text-gray-300 hover:text-white transition-colors" />
+        </a>
+      </div>
+      
       <Container className="py-8 lg:py-12">
         <div className="max-w-6xl mx-auto">
           {/* Header */}

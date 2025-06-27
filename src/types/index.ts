@@ -6,6 +6,7 @@ export interface UserData {
   completedSteps: string[];
   currentStep: string;
   startedAt: Date;
+  lastActiveAt: Date;
 }
 
 export interface CalculationResult {

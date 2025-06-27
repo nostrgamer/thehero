@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useStore } from './store/useStore';
+import { useSessionTimeout } from './hooks/useSessionTimeout';
 import { Landing } from './pages/Landing';
 import { TheScriptGiven } from './pages/TheScriptGiven';
 import { TimeHasValue } from './pages/TimeHasValue';
@@ -10,6 +11,9 @@ import './styles/globals.css';
 
 function App() {
   const { currentStep } = useStore();
+  
+  // Initialize session timeout management
+  useSessionTimeout();
 
   // Scroll to top whenever the step changes
   useEffect(() => {

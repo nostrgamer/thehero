@@ -4,6 +4,7 @@ import { Button } from '../components/ui/Button';
 import { Container } from '../components/layout/Container';
 import { PowerLawChart } from '../components/ui/PowerLawChart';
 import { References } from '../components/ui/References';
+import { StartOverLink } from '../components/ui/StartOverLink';
 import { getPageReferences } from '../data/references';
 
 export const HerosTriumph = () => {
@@ -455,6 +456,9 @@ export const HerosTriumph = () => {
 
           {/* References */}
           <References references={references} />
+          
+          {/* Start Over Link */}
+          <StartOverLink />
         </div>
       </Container>
     </div>
